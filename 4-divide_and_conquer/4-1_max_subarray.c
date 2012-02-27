@@ -70,12 +70,48 @@ section find_max_subarray(int list[], int low, int high) {
     }
 }
 
+
+/**
+ * This is a faster algorithm: Kadane's algorithm
+ * http://www.geeksforgeeks.org/archives/576
+ *
+ * @param array list
+ * @return int maximum sum
+ */
+section find_max_value(int list[]) {
+    // track sums
+    int max = 0;
+    int current = 0;
+    // track indexes
+    int low = 0;
+    int high = 0;
+    // counter
+    int i;
+
+    for (i=0; i < LIST_LEN; i++) {
+        current += list[i];
+        if (current < 0) {
+            current = 0;
+            low = i+1;
+        } else if (max < current) {
+            max = current;
+            high = i;
+        }
+    }
+    section ret = {low, high, max};
+    return ret;
+}
+
 int main(int argc, char *argv[]) {
     int list[LIST_LEN] = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
 
-    section result = find_max_subarray(list, 0, LIST_LEN - 1);
-    print_section(result);
-    print_list(list, LIST_LEN);
+    // recursive method, described in the book
+    section result2 = find_max_subarray(list, 0, LIST_LEN - 1);
+    print_section(result2);
+
+    // faster algorithm
+    section result1 = find_max_value(list);
+    print_section(result1);
 
     return 0;
 }
