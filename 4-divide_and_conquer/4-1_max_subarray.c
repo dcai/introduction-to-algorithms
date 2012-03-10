@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 #define LIST_LEN 16
 
 typedef struct {
@@ -11,15 +12,6 @@ typedef struct {
 
 void print_section(section sec) {
     printf("low: %d, high: %d, sum: %d\n", sec.low, sec.high, sec.sum);
-}
-
-void print_list(int list[], int length) {
-    printf("List: [");
-    int counter = 0;
-    for (counter; counter < length; counter++) {
-        printf("%d, ", list[counter]);
-    }
-    printf("] \n");
 }
 
 section find_max_cross_subarray(int list[], int low, int mid, int high) {
