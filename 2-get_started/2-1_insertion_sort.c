@@ -1,22 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#include "common.h"
 #define LIST_LEN 10
-void print_list(int list[], int length) {
-    printf("length: %d\n", length);
-    printf("List: [");
-    int counter = 0;
-    for (counter; counter < length; counter++) {
-        printf("%d, ", list[counter]);
-    }
-    printf("] \n");
-}
 
 void insertion_sort(int list[], int length) {
-    int j = 1;
+    int j;
     int k;
     int i;
-    for (j; j < length; j++) {
+    // outer loop start from the second element
+    for (j = 1; j < length; j++) {
         k = list[j];
         i = j - 1;
         while (i >= 0 && list[i] > k) {
@@ -25,7 +19,6 @@ void insertion_sort(int list[], int length) {
         }
         list[i+1] = k;
     }
-    print_list(list, length);
 } 
 
 int main(int argc, char *argv[]) {
@@ -33,7 +26,7 @@ int main(int argc, char *argv[]) {
     srand(seed);
 
     int list[LIST_LEN];
-    int counter = 0;
+    int counter;
     int number = 0;
 
     // test function pointer
@@ -41,16 +34,21 @@ int main(int argc, char *argv[]) {
     // assign pointer
     sort = insertion_sort;
 
-    for (counter; counter < LIST_LEN; counter++) {
+    // Generate random list
+    for (counter = 0; counter < LIST_LEN; counter++) {
         number = rand() % 1000;
         // use rand() % 1000 will get random number between 1-1000
         list[counter] = number;
     }
+
+    // before sorting
     print_list(list, LIST_LEN);
 
+    // perform sorting
     sort(list, LIST_LEN);
 
-    /*printf("length: %ld\n", sizeof(list)/sizeof(2));*/
+    // sorting results
+    print_list(list, LIST_LEN);
 
     return 0;
 }
