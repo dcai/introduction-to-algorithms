@@ -2,17 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#define LIST_LEN 10
+#include "common.h"
 
-void print_list(int list[], int length) {
-    printf("length: %d\n", length);
-    printf("List: [");
-    int counter = 0;
-    for (counter; counter < length; counter++) {
-        printf("%d, ", list[counter]);
-    }
-    printf("] \n");
-}
+#define LIST_LEN 10
 
 int parent(int i) {
     /*return (int)floor(i/2);*/
@@ -81,20 +73,21 @@ int main(int argc, char *argv[]) {
     srand(seed);
 
     int list[LIST_LEN];
-    int counter = 0;
+    int counter;
     int number = 0;
 
     // test function pointer
     void (*sort)(int [], int) = heap_sort;
 
-    for (counter; counter < LIST_LEN; counter++) {
+    for (counter = 0; counter < LIST_LEN; counter++) {
         number = rand() % 1000;
         // use rand() % 1000 will get random number between 1-1000
         list[counter] = number;
     }
-    printf("parent of %d is %d\n", 7, parent(7));
-    printf("left of %d is %d\n", 7, left(7));
-    printf("right of %d is %d\n", 7, right(7));
+    /*printf("parent of %d is %d\n", 7, parent(7));*/
+    /*printf("left of %d is %d\n", 7, left(7));*/
+    /*printf("right of %d is %d\n", 7, right(7));*/
+
     print_list(list, LIST_LEN);
 
     sort(list, LIST_LEN);
