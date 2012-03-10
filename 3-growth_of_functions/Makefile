@@ -1,0 +1,3 @@
+CFLAG=-Wall -g
+
+all:

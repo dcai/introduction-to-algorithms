@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include <math.h>
 #include "common.h"
 
 #define LIST_LEN 10
@@ -44,7 +42,6 @@ void max_heapify(int list[], int i, int heap_size) {
         list[largest] = temp;
         max_heapify(list, largest, heap_size);
     }
-    
 }
 
 void build_max_heap(int list[], int length) {
@@ -69,21 +66,12 @@ void heap_sort(int list[], int length) {
 }
 
 int main(int argc, char *argv[]) {
-    unsigned int seed = (unsigned int)time(NULL);
-    srand(seed);
-
     int list[LIST_LEN];
-    int counter;
-    int number = 0;
+    make_list(list, LIST_LEN);
 
     // test function pointer
     void (*sort)(int [], int) = heap_sort;
 
-    for (counter = 0; counter < LIST_LEN; counter++) {
-        number = rand() % 1000;
-        // use rand() % 1000 will get random number between 1-1000
-        list[counter] = number;
-    }
     /*printf("parent of %d is %d\n", 7, parent(7));*/
     /*printf("left of %d is %d\n", 7, left(7));*/
     /*printf("right of %d is %d\n", 7, right(7));*/

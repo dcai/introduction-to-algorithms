@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include "common.h"
 
 #define LIST_LEN 8
@@ -77,21 +76,11 @@ void merge_sort(int list[], int start, int end) {
 }
 
 int main(int argc, char *argv[]) {
-    unsigned int seed = (unsigned int)time(NULL);
-    srand(seed);
-
     int list[LIST_LEN];
-    int counter;
-    int number = 0;
+    make_list(list, LIST_LEN);
 
     // test function pointer
     void (*sort)(int [], int, int) = merge_sort;
-
-    for (counter = 0; counter < LIST_LEN; counter++) {
-        number = rand() % 1000;
-        // use rand() % 1000 will get random number between 1-1000
-        list[counter] = number;
-    }
 
     print_list(list, LIST_LEN);
 
